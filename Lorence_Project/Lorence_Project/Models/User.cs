@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace Lorence_Project.Models
 {
@@ -17,6 +18,9 @@ namespace Lorence_Project.Models
         //This user will have "View" credentials 
         //to complete once we have the rest of the site's logic
 
+        //Collection to many Orders
+        //Many-To-One
+        ICollection<Order> Orders { get; set; }
 
     }
 }
