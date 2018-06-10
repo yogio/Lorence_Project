@@ -16,7 +16,7 @@ namespace Lorence_Project.Models
             ICollection<Sit> Sits { get; set; }
             //Products
             //Many-To-Many
-            ICollection<Product> Products { get; set; }
+            ICollection<Drink> Drinks { get; set; }
             //The User who made the order 
             //One-To-Many
             User Users { get; set; }
