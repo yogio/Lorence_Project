@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lorence_Project.Models
 {
@@ -13,6 +15,8 @@ namespace Lorence_Project.Models
         //User Name
         public string Name { get; set; }
         //User Password
+        [DisplayName("Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         //This user will have "View" credentials 
