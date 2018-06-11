@@ -13,10 +13,14 @@ namespace Lorence_Project.Models
         //Primary Key
         public int ID { get; set; }
         //User Name
+        //is set to have a max of 16 characters
+        [MaxLength(16)]
         public string Name { get; set; }
         //User Password
+        //setting the password to have a min of 6 characters
         [DisplayName("Password")]
         [DataType(DataType.Password)]
+        [MinLength(6)]
         public string Password { get; set; }
 
         //This user will have "View" credentials 
