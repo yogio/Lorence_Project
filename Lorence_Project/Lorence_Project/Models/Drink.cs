@@ -15,6 +15,7 @@ namespace Lorence_Project.Models
         //setting the minimux number of character to 1
         [MaxLength(255)]
         [MinLength(1)]
+        [Required]
         public string DrinkName { get; set; }
         //Collection Many-To-Many
         //the virtual if for later, possible "lazy loading".

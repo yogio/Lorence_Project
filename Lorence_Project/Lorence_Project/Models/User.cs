@@ -15,12 +15,14 @@ namespace Lorence_Project.Models
         //User Name
         //is set to have a max of 16 characters
         [MaxLength(16)]
+        [Required]
         public string Name { get; set; }
         //User Password
         //setting the password to have a min of 6 characters
         [DisplayName("Password")]
         [DataType(DataType.Password)]
         [MinLength(6)]
+        [Required]
         public string Password { get; set; }
 
         //This user will have "View" credentials 
