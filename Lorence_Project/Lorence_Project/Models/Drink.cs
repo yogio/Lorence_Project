@@ -8,7 +8,7 @@ namespace Lorence_Project.Models
 {
     public class Drink
     {
-        //ID of the product
+        //ID of the product, by default is created by DB.
         public int ID { get; set; }
         //The product's Name
         //setting the maximum number of characters to 255

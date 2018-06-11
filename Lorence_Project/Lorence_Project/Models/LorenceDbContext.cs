@@ -23,7 +23,7 @@ namespace Lorence_Project.Models
         //we will notice that the fact Orders are calling for the creation of Drinks and Sits
         //is created by the fact it holds these DB's, but we mention them here for easier code reading.
         public DbSet<Drink> Drinks { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        //public DbSet<Order> Orders { get; set; }
         public DbSet<Sit> Sits { get; set; }
         public DbSet<User> Users { get; set; }
 
