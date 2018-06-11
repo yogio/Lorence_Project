@@ -24,7 +24,7 @@ namespace Lorence_Project.Models
 
         //Collection to many Orders
         //Many-To-One
-        ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

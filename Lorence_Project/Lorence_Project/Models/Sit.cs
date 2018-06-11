@@ -12,7 +12,8 @@ namespace Lorence_Project.Models
         //Sit number - set as a string because it might be a description of a sit "garden" and not a number
         public string SitName { get; set; }
         //Collections to Order
-        ICollection<Order> Orders { get; set; }
+        //the virtual if for later, possible "lazy loading".
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

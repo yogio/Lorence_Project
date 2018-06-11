@@ -12,7 +12,8 @@ namespace Lorence_Project.Models
         //The product's Name
         public string DrinkName { get; set; }
         //Collection Many-To-Many
-        ICollection<Order> Orders { get; set; }
+        //the virtual if for later, possible "lazy loading".
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

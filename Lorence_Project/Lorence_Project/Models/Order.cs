@@ -19,6 +19,7 @@ namespace Lorence_Project.Models
             ICollection<Drink> Drinks { get; set; }
             //The User who made the order 
             //One-To-Many
+
             User Users { get; set; }
     }
 }
