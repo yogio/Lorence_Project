@@ -9,9 +9,7 @@ namespace Lorence_Project.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            //for testing, this is enabled, but for a production ready product we should set to false.
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Lorence_Project.Models.LorenceDbContext context)

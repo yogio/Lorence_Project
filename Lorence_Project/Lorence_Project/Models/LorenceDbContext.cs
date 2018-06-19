@@ -34,6 +34,6 @@ namespace Lorence_Project.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-
+        public System.Data.Entity.DbSet<Lorence_Project.Models.Order> Orders { get; set; }
     }
 }
