@@ -16,7 +16,7 @@ namespace Lorence_Project.DAL
             {
                 new Drink{ DrinkName = "Beer"},
                 new Drink{DrinkName = "Wine"},
-                new Drink{DrinkName = "kill mee"}
+                new Drink{DrinkName = "Cooctail"}
             };
             drinks.ForEach(d => context.Drinks.Add(d));
             context.SaveChanges();

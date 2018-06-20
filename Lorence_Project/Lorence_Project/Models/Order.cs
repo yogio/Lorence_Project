@@ -9,14 +9,13 @@ namespace Lorence_Project.Models
     {
         //Order's ID
         public int ID { get; set; }
-        
+        //Sit number - set as a string because it might be a description of a sit "garden" and not a number
+        public string SitName { get; set; }
+
         //Collections between:
-            //Sits
-            //Many-To-Many
-            ICollection<Sit> Sits { get; set; }
-            //Products
-            //Many-To-Many
-            ICollection<Drink> Drinks { get; set; }
+        //Products
+        //Many-To-Many
+        ICollection<Drink> Drinks { get; set; }
             //The User who made the order 
             //One-To-Many
             User Users { get; set; }
