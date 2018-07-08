@@ -5,11 +5,13 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lorence_Project.Models
 {
     public class User
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         //Primary Key
         public int ID { get; set; }
         //User Name
