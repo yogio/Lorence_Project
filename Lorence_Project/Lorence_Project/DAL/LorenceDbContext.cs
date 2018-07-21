@@ -13,7 +13,7 @@ namespace Lorence_Project.DAL
         public LorenceDbContext() : base("LorenceDbContext") { }
 
         public DbSet<Drink> Drinks { get; set; }
-        public DbSet<Sit> Sits { get; set; }
+        //public DbSet<Sit> Sits { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
