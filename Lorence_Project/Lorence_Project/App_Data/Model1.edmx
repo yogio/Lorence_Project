@@ -46,6 +46,7 @@
           <Property Name="Arrived" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Model1.OrderSitProduct" FromRole="OrderSit" ToRole="Product" />
           <Property Name="UserID" Type="String" Nullable="false" />
+          <Property Name="confirmedByAdmin" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="OrderSitUser">
           <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />

@@ -12,7 +12,7 @@ namespace Lorence_Project.Models
     public class User
     {
         //enum for the kinds of users the site will have
-        public enum UserKind {Administrator = 1, Client = 2, Worker = 3};
+        public enum UserKind {Administrator = 1, Client = 2, Employee = 3};
 
         //for testing, we define each entity's ID
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

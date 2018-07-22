@@ -35,7 +35,7 @@ namespace Lorence_Project.DAL
             //list of Orders of Sits
             var sits = new List<OrderSit>
             {
-                new OrderSit{ OrderSitID = 1, SitName = "Sit 1", date = DateTime.Now, arrived = null, confirmedByAdmin = null}
+                new OrderSit{ OrderSitID = 1, SitName = "Sit 1", date = DateTime.Now, arrived = null, confirmedByAdmin = null, UserID = users.Single(s=> s.UserName == "Admin").UserID}
             };
             sits.ForEach(s => context.OrderSits.Add(s));
             context.SaveChanges();

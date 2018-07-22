@@ -15,9 +15,9 @@
   </EntityContainer>
   <EntityType Name="User">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" Nullable="false" />
     <Property Name="Password" Type="String" Nullable="false" />
     <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitUser" FromRole="User" ToRole="OrderSit" />
@@ -25,15 +25,16 @@
   </EntityType>
   <EntityType Name="OrderSit">
     <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="Arrived" />
+      <PropertyRef Name="OrderSitID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderSitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SitName" Type="String" Nullable="false" />
     <NavigationProperty Name="User" Relationship="Model1.OrderSitUser" FromRole="OrderSit" ToRole="User" />
     <Property Name="Date" Type="String" Nullable="false" />
     <Property Name="Arrived" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Model1.OrderSitProduct" FromRole="OrderSit" ToRole="Product" />
+    <Property Name="UserID" Type="String" Nullable="false" />
+    <Property Name="confirmedByAdmin" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="OrderSitUser">
     <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />
@@ -43,9 +44,9 @@
   <EntityType Name="Client" BaseType="Model1.User" />
   <EntityType Name="Product">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitProduct" FromRole="Product" ToRole="OrderSit" />
     <Property Name="ProductName" Type="String" Nullable="false" />
     <Property Name="ProductKind" Type="String" Nullable="false" />

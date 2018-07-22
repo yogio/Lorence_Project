@@ -157,6 +157,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderSitsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\LorenceDbContext.cs" />
     <Compile Include="DAL\LorenceInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +222,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\OrderSits\Create.cshtml" />
+    <Content Include="Views\OrderSits\Delete.cshtml" />
+    <Content Include="Views\OrderSits\Details.cshtml" />
+    <Content Include="Views\OrderSits\Edit.cshtml" />
+    <Content Include="Views\OrderSits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
