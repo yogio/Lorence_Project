@@ -13,14 +13,27 @@ namespace Lorence_Project.DAL
         public LorenceDbContext() : base("LorenceDbContext") { }
 
         public DbSet<Product> Products { get; set; }
-        //public DbSet<Sit> Sits { get; set; }
+        public DbSet<OrderSit> OrderSits { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Product>()
+                .HasMany(c => c.OrderSits).WithMany(i => i.Products)
+                .Map(t => t.MapLeftKey("ProductID")
+                .MapRightKey("OrderSitID")
+                .ToTable("OrderSitProduct"));
+
+            modelBuilder.Entity<User>()
+                .HasMany(c => c.OrderSits).WithMany(f => f.Users)
+                .Map(r => r.MapLeftKey("UserID")
+                .MapRightKey("OrderSits").ToTable("OrderesByUsers"));
+
+
+
         }
 
-        public System.Data.Entity.DbSet<Lorence_Project.Models.OrderSit> OrderSits { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace Lorence_Project.Models
         //The product's Name
         public ProductKind productKind { get; set; }
         //The name of the product
-        public string ProductName { get; set; }
+        public string productName { get; set; }
         //The Description of the product
-        public string Description { get; set; }
+        public string description { get; set; }
         //Collection Many-To-Many
         public virtual ICollection<OrderSit> OrderSits { get; set; }
 

@@ -50,7 +50,7 @@
         </EntityType>
         <Association Name="OrderSitUser">
           <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
         </Association>
         <EntityType Name="Admin" BaseType="Model1.User" />
         <EntityType Name="Client" BaseType="Model1.User" />

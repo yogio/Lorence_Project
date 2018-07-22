@@ -47,7 +47,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,productKind,ProductName,Description")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,productKind,productName,description")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,productKind,ProductName,Description")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,productKind,productName,description")] Product product)
         {
             if (ModelState.IsValid)
             {

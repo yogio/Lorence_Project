@@ -17,8 +17,10 @@ namespace Lorence_Project.Models
         //for testing, we define each entity's ID
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         //Primary Key
+        [DisplayName("User ID number")]
         public int UserID { get; set; }
         //user's kind : Administrator/Client/Worker
+        [DisplayName("Kind of User")]
         public UserKind userKind { get; set; }
         //User Name
         public string UserName { get; set; }

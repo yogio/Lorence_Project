@@ -47,7 +47,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderSitID,SitName,date,UserID,arrived,confirmedByAdmin")] OrderSit orderSit)
+        public ActionResult Create([Bind(Include = "OrderSitID,SitName,dateOrdered,orderDate,UserID,arrived,confirmedByAdmin")] OrderSit orderSit)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderSitID,SitName,date,UserID,arrived,confirmedByAdmin")] OrderSit orderSit)
+        public ActionResult Edit([Bind(Include = "OrderSitID,SitName,dateOrdered,orderDate,UserID,arrived,confirmedByAdmin")] OrderSit orderSit)
         {
             if (ModelState.IsValid)
             {

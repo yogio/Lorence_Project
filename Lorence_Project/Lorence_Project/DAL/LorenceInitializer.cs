@@ -22,20 +22,25 @@ namespace Lorence_Project.DAL
 
 
             //list of products
-            var drinks = new List<Product>
+            var product = new List<Product>
             {
-                new Product{ ProductID = 1, productKind = ProductKind.Drink, ProductName = "Beer"},
-                new Product{ProductID = 2, productKind = ProductKind.Drink, ProductName = "Wine"},
-                new Product{ProductID = 3, productKind = ProductKind.Drink, ProductName = "Cooctail"},
-                new Product{ProductID = 4, productKind = ProductKind.Food, ProductName = "Burger"},
+                new Product{ ProductID = 1, productKind = ProductKind.Drink, productName = "Beer"},
+                new Product{ProductID = 2, productKind = ProductKind.Drink, productName = "Wine"},
+                new Product{ProductID = 3, productKind = ProductKind.Drink, productName = "Cooctail"},
+                new Product{ProductID = 4, productKind = ProductKind.Food, productName = "Burger"},
             };
-            drinks.ForEach(d => context.Products.Add(d));
+            product.ForEach(d => context.Products.Add(d));
             context.SaveChanges();
 
             //list of Orders of Sits
             var sits = new List<OrderSit>
             {
-                new OrderSit{ OrderSitID = 1, SitName = "Sit 1", date = DateTime.Now, arrived = null, confirmedByAdmin = null, UserID = users.Single(s=> s.UserName == "Admin").UserID}
+                new OrderSit{ OrderSitID = 1, SitName = "Sit 1", dateOrdered = DateTime.Parse(DateTime.Now.ToString()), orderDate = DateTime.Now.AddDays(2.0),
+                    arrived = null, confirmedByAdmin = null,
+                    UserID = users.Single(s=> s.UserName == "Admin").UserID},
+                new OrderSit{ OrderSitID = 2, SitName = "Sit 2", dateOrdered = DateTime.Parse(DateTime.Now.ToString()), orderDate = DateTime.Now.AddDays(3.0),
+                    arrived = null, confirmedByAdmin = null,
+                    UserID = users.Single(s=> s.UserName == "firstClient").UserID } 
             };
             sits.ForEach(s => context.OrderSits.Add(s));
             context.SaveChanges();
