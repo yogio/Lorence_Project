@@ -19,6 +19,9 @@ namespace Lorence_Project.Models
         //The date the order was made
         public DateTime date { get; set; }
 
+        //the foreign key that connects us to the specific user who made the order
+        public int UserID { get; set; }
+
         //a booling that indecates if the client arrived for his order
         //it is nullable because it will either be a true of false until the date of the order actually arrived
         public bool? arrived { get; set; }
