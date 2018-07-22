@@ -12,7 +12,7 @@ namespace Lorence_Project.DAL
     {
         public LorenceDbContext() : base("LorenceDbContext") { }
 
-        public DbSet<Drink> Drinks { get; set; }
+        public DbSet<Product> Products { get; set; }
         //public DbSet<Sit> Sits { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -20,5 +20,7 @@ namespace Lorence_Project.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Lorence_Project.Models.OrderSit> OrderSits { get; set; }
     }
 }

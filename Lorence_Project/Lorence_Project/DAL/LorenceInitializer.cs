@@ -11,17 +11,34 @@ namespace Lorence_Project.DAL
     {
         protected override void Seed(LorenceDbContext context)
         {
-
-            var drinks = new List<Drink>
+            //list of users
+            var users = new List<User>
             {
-                new Drink{ DrinkName = "Beer"},
-                new Drink{DrinkName = "Wine"},
-                new Drink{DrinkName = "Cooctail"},
+                new User{UserID = 1, userKind = User.UserKind.Administrator,UserName = "Admin",Password = "P@ssW0rd"},
+                new User{UserID = 2, userKind = User.UserKind.Client, UserName = "firstClient", Password = "Change12!"}
             };
-            drinks.ForEach(d => context.Drinks.Add(d));
+            users.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
 
-           // base.Seed(context);
+
+            //list of products
+            var drinks = new List<Product>
+            {
+                new Product{ ProductID = 1, productKind = ProductKind.Drink, ProductName = "Beer"},
+                new Product{ProductID = 2, productKind = ProductKind.Drink, ProductName = "Wine"},
+                new Product{ProductID = 3, productKind = ProductKind.Drink, ProductName = "Cooctail"},
+                new Product{ProductID = 4, productKind = ProductKind.Food, ProductName = "Burger"},
+            };
+            drinks.ForEach(d => context.Products.Add(d));
+            context.SaveChanges();
+
+            //list of Orders of Sits
+            var sits = new List<OrderSit>
+            {
+                new OrderSit{ OrderSitID = 1, SitName = "Sit 1", date = DateTime.Now, arrived = null, confirmedByAdmin = null}
+            };
+            sits.ForEach(s => context.OrderSits.Add(s));
+            context.SaveChanges();
         }
     }
 }

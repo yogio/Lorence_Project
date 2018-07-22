@@ -33,16 +33,18 @@
           <Property Name="UserName" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitUser" FromRole="User" ToRole="OrderSit" />
+          <Property Name="UserKind" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderSit">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Arrived" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SitNumber" Type="String" Nullable="false" />
+          <Property Name="SitName" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model1.OrderSitUser" FromRole="OrderSit" ToRole="User" />
           <Property Name="Date" Type="String" Nullable="false" />
-          <Property Name="Arrived" Type="String" Nullable="false" />
+          <Property Name="Arrived" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Model1.OrderSitProduct" FromRole="OrderSit" ToRole="Product" />
         </EntityType>
         <Association Name="OrderSitUser">
@@ -58,6 +60,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitProduct" FromRole="Product" ToRole="OrderSit" />
           <Property Name="ProductName" Type="String" Nullable="false" />
+          <Property Name="ProductKind" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="OrderSitProduct">
           <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />
