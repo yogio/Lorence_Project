@@ -18,6 +18,7 @@ namespace Lorence_Project.Controllers
         // GET: Products
         public ActionResult Index()
         {
+            var orderSits = db.OrderSits.Include(c => c.SitName);
             return View(db.Products.ToList());
         }
 
