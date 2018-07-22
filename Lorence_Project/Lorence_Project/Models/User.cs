@@ -17,12 +17,14 @@ namespace Lorence_Project.Models
         //for testing, we define each entity's ID
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         //Primary Key
-        [DisplayName("User ID number")]
+        [Key]
+        [DisplayName("ID Number")]
         public int UserID { get; set; }
         //user's kind : Administrator/Client/Worker
         [DisplayName("Kind of User")]
         public UserKind userKind { get; set; }
         //User Name
+        [DisplayName("User Name")]
         public string UserName { get; set; }
         //User Password
         [DisplayName("Password")]
@@ -34,7 +36,7 @@ namespace Lorence_Project.Models
 
         //Collection to many Orders
         //Many-To-One
-        public virtual ICollection<OrderSit> OrderSits { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

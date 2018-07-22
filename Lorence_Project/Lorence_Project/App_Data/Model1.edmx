@@ -14,15 +14,20 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserSet" EntityType="Model1.User" />
-          <EntitySet Name="OrderSitSet" EntityType="Model1.OrderSit" />
+          <EntitySet Name="OrderSet" EntityType="Model1.Order" />
           <AssociationSet Name="OrderSitUser" Association="Model1.OrderSitUser">
-            <End Role="OrderSit" EntitySet="OrderSitSet" />
+            <End Role="OrderSit" EntitySet="OrderSet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
           <EntitySet Name="ProductSet" EntityType="Model1.Product" />
-          <AssociationSet Name="OrderSitProduct" Association="Model1.OrderSitProduct">
-            <End Role="OrderSit" EntitySet="OrderSitSet" />
+          <EntitySet Name="OrderProductSet" EntityType="Model1.OrderProduct" />
+          <AssociationSet Name="OrderSitOrderProducts" Association="Model1.OrderSitOrderProducts">
+            <End Role="OrderSit" EntitySet="OrderSet" />
+            <End Role="OrderProducts" EntitySet="OrderProductSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductOrderProducts" Association="Model1.ProductOrderProducts">
             <End Role="Product" EntitySet="ProductSet" />
+            <End Role="OrderProducts" EntitySet="OrderProductSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -35,22 +40,23 @@
           <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitUser" FromRole="User" ToRole="OrderSit" />
           <Property Name="UserKind" Type="String" Nullable="false" />
         </EntityType>
-        <EntityType Name="OrderSit">
+        <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="OrderSitID" />
+            <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderSitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SitName" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model1.OrderSitUser" FromRole="OrderSit" ToRole="User" />
-          <Property Name="Date" Type="String" Nullable="false" />
+          <Property Name="dateOrdered" Type="String" Nullable="false" />
           <Property Name="Arrived" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Model1.OrderSitProduct" FromRole="OrderSit" ToRole="Product" />
           <Property Name="UserID" Type="String" Nullable="false" />
           <Property Name="confirmedByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="orderDate" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderProduct" Relationship="Model1.OrderSitOrderProducts" FromRole="OrderSit" ToRole="OrderProducts" />
         </EntityType>
         <Association Name="OrderSitUser">
-          <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />
-          <End Type="Model1.User" Role="User" Multiplicity="*" />
+          <End Type="Model1.Order" Role="OrderSit" Multiplicity="*" />
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
         </Association>
         <EntityType Name="Admin" BaseType="Model1.User" />
         <EntityType Name="Client" BaseType="Model1.User" />
@@ -59,19 +65,33 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitProduct" FromRole="Product" ToRole="OrderSit" />
           <Property Name="ProductName" Type="String" Nullable="false" />
           <Property Name="ProductKind" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderProduct" Relationship="Model1.ProductOrderProducts" FromRole="Product" ToRole="OrderProducts" />
         </EntityType>
-        <Association Name="OrderSitProduct">
-          <End Type="Model1.OrderSit" Role="OrderSit" Multiplicity="*" />
-          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Bar" BaseType="Model1.OrderSit" />
-        <EntityType Name="Table" BaseType="Model1.OrderSit" />
+        <EntityType Name="Bar" BaseType="Model1.Order" />
+        <EntityType Name="Table" BaseType="Model1.Order" />
         <EntityType Name="Drink" BaseType="Model1.Product" />
         <EntityType Name="Food" BaseType="Model1.Product" />
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="orderProductsID" />
+          </Key>
+          <Property Name="orderProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OrderSit" Relationship="Model1.OrderSitOrderProducts" FromRole="OrderProducts" ToRole="OrderSit" />
+          <NavigationProperty Name="Product" Relationship="Model1.ProductOrderProducts" FromRole="OrderProducts" ToRole="Product" />
+          <Property Name="productID" Type="String" Nullable="false" />
+          <Property Name="orderID" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="OrderSitOrderProducts">
+          <End Type="Model1.Order" Role="OrderSit" Multiplicity="1" />
+          <End Type="Model1.OrderProduct" Role="OrderProducts" Multiplicity="*" />
+        </Association>
+        <Association Name="ProductOrderProducts">
+          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+          <End Type="Model1.OrderProduct" Role="OrderProducts" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
