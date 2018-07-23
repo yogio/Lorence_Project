@@ -23,15 +23,15 @@ namespace Lorence_Project.Models
         public int UserID { get; set; }
         //[Column(TypeName = "datetime2")]
         //[Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date), Display(Name = "Date Created")]
         [Column(TypeName = "datetime2")]
         public DateTime DateCreated { get; set; }
         //[Column(TypeName = "datetime2")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy HH:mm}", ApplyFormatInEditMode = true)]
         [Required]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
         public bool? Arrived { get; set; }
         public bool? Approved { get; set; }
 
