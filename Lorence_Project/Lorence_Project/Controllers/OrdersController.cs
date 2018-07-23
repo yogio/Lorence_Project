@@ -18,7 +18,8 @@ namespace Lorence_Project.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            var orders = db.Orders.Include(o => o.Users);
+            return View(orders.ToList());
         }
 
         // GET: Orders/Details/5
@@ -39,6 +40,7 @@ namespace Lorence_Project.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderSitID,SitName,dateOrdered,orderDate,UserID,arrived,confirmedByAdmin,OrderProductID")] Order order)
+        public ActionResult Create([Bind(Include = "OrderID,Sit,UserID,DateCreated,Date,Arrived,Approved")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace Lorence_Project.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", order.UserID);
             return View(order);
         }
 
@@ -71,6 +74,7 @@ namespace Lorence_Project.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", order.UserID);
             return View(order);
         }
 
@@ -79,7 +83,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderSitID,SitName,dateOrdered,orderDate,UserID,arrived,confirmedByAdmin,OrderProductID")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderID,Sit,UserID,DateCreated,Date,Arrived,Approved")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace Lorence_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", order.UserID);
             return View(order);
         }
 

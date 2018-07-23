@@ -1,42 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+public enum UserKind { Administrator = 1, Employee = 2, Client = 3}
 
 namespace Lorence_Project.Models
 {
+    [Table("Users")]
     public class User
     {
-        //enum for the kinds of users the site will have
-        public enum UserKind {Administrator = 1, Client = 2, Employee = 3};
-
-        //for testing, we define each entity's ID
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //Primary Key
+        //User ID for the Users Table
         [Key]
-        [DisplayName("ID Number")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID")]
         public int UserID { get; set; }
-        //user's kind : Administrator/Client/Worker
-        [DisplayName("Kind of User")]
-        public UserKind userKind { get; set; }
-        //User Name
-        [DisplayName("User Name")]
+        [Required]
+        [Display(Name = "UserName")]
+        [MaxLength(20)]
+        [MinLength(3)]
         public string UserName { get; set; }
-        //User Password
-        [DisplayName("Password")]
-        [DataType(DataType.Password)]
+        [Required]
+        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
+        [Required]
+        public UserKind userKind { get; set; }
 
-        //This user will have "View" credentials 
-        //to complete once we have the rest of the site's logic
 
-        //Collection to many Orders
-        //Many-To-One
+        //Navigation Property
         public virtual ICollection<Order> Orders { get; set; }
-
     }
 }
