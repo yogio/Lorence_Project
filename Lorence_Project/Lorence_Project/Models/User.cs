@@ -5,15 +5,27 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lorence_Project.Models
 {
     public class User
     {
+        //enum for the kinds of users the site will have
+        public enum UserKind {Administrator = 1, Client = 2, Employee = 3};
+
+        //for testing, we define each entity's ID
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         //Primary Key
-        public int ID { get; set; }
+        [Key]
+        [DisplayName("ID Number")]
+        public int UserID { get; set; }
+        //user's kind : Administrator/Client/Worker
+        [DisplayName("Kind of User")]
+        public UserKind userKind { get; set; }
         //User Name
-        public string Name { get; set; }
+        [DisplayName("User Name")]
+        public string UserName { get; set; }
         //User Password
         [DisplayName("Password")]
         [DataType(DataType.Password)]
@@ -24,7 +36,7 @@ namespace Lorence_Project.Models
 
         //Collection to many Orders
         //Many-To-One
-        ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }
