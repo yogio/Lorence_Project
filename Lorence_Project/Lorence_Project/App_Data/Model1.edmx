@@ -53,6 +53,7 @@
           <NavigationProperty Name="OrderProduct" Relationship="Model1.OrderSitOrderProducts" FromRole="OrderSit" ToRole="OrderProducts" />
           <NavigationProperty Name="User" Relationship="Model1.OrderUser" FromRole="Order" ToRole="User" />
           <Property Name="Date" Type="String" Nullable="false" />
+          <Property Name="Time" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Admin" BaseType="Model1.User" />
         <EntityType Name="Client" BaseType="Model1.User" />

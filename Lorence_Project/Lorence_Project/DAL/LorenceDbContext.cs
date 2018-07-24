@@ -15,7 +15,7 @@ namespace Lorence_Project.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-
+        //can be used for Fluet API
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -24,6 +24,8 @@ namespace Lorence_Project.DAL
                 .HasKey(c => c.UserID)
                 .HasMany(c => c.Orders);
                 */
+                //
+            //modelBuilder.Entity<Order>().Property(d => d.DateCreated).HasDatabaseGeneratedOption("getdate()");
        }
 
     }
