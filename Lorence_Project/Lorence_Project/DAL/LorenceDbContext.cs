@@ -24,6 +24,8 @@ namespace Lorence_Project.DAL
                 .HasKey(c => c.UserID)
                 .HasMany(c => c.Orders);
                 */
+
+            //modelBuilder.Entity<Order>().Property(d => d.DateCreated).HasDatabaseGeneratedOption("getdate()");
        }
 
     }

@@ -24,8 +24,8 @@ namespace Lorence_Project.DAL
 
             var orders = new List<Order>
             {
-                new Order{Date = DateTime.Now.Date.AddDays(3.0), Sit = "1", UserID = 1},
-                new Order{Date = DateTime.Now.Date.AddDays(2.0), Sit = "1", UserID = 1}
+                new Order{Time = DateTime.Parse("20:00"), Date = DateTime.Now.Date.AddDays(3.0), Sit = "1", UserID = 1},
+                new Order{Time = DateTime.Parse("21:00"),Date = DateTime.Now.Date.AddDays(2.0), Sit = "1", UserID = 1}
             };
             orders.ForEach(o => context.Orders.Add(o));
             context.SaveChanges();
