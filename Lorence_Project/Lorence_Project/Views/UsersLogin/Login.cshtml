@@ -1,0 +1,26 @@
+﻿@model Lorence_Project.Models.UserAuthentication
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<h3>Login to user</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+
+    <form method="POST" action="/UsersLogin/Login">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" placeholder="UserName" />
+        <label asp-for="Password"></label>
+        <input asp-for="Password" placeholder="Password" />
+        <input type="submit" />
+    </form>
+
+
+
+
+    
+</div>
