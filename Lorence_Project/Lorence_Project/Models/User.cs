@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-public enum UserKind { Administrator = 1, Employee = 2, Client = 3}
+public enum UserKind { Administrator = 1, Employee = 2, Client = 3, Guest = 4}
 
 namespace Lorence_Project.Models
 {
@@ -23,7 +23,7 @@ namespace Lorence_Project.Models
         [MinLength(3)]
         public string UserName { get; set; }
         [Required]
-        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(16, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$")]
         [Display(Name = "Password")]
         public string Password { get; set; }

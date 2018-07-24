@@ -17,15 +17,15 @@ namespace Lorence_Project.DAL
             {
                 new User{Password = "Change12!", UserName = "Admin", userKind = UserKind.Administrator},
                 new User{Password = "PassW0rd", UserName = "Client", userKind = UserKind.Client},
-                new User{Password = "Aa123456!", UserName = "Emp", userKind = UserKind.Employee}
+                new User{Password = "Aa123454!", UserName = "Emp", userKind = UserKind.Employee}
             };
             users.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
 
             var orders = new List<Order>
             {
-                new Order{Date = DateTime.Now.Date.AddDays(3.0), Sit = "1", UserID = 1},
-                new Order{Date = DateTime.Now.Date.AddDays(2.0), Sit = "1", UserID = 1}
+                new Order{Time = DateTime.Parse("20:00"), Date = DateTime.Now.Date.AddDays(3.0), Sit = "1", UserID = 1},
+                new Order{Time = DateTime.Parse("21:00"),Date = DateTime.Now.Date.AddDays(2.0), Sit = "1", UserID = 1}
             };
             orders.ForEach(o => context.Orders.Add(o));
             context.SaveChanges();
