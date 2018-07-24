@@ -11,45 +11,17 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
-    public class UsersLoginController : Controller
+    public class UsersController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
 
-
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login([Bind(Include = "UserID,UserName,Password,userKind")] User model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-            else
-            {
-                if (db.Users.First(c => c.UserName == model.UserName).Password == model.Password)
-                {
-                    //creating a user session
-                    Session["UserID"] = Guid.NewGuid();
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid Login.");
-                    return View(model);
-                }
-            }
-        }
-
-        // GET: UsersLogin
+        // GET: Users
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
 
-        // GET: UsersLogin/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -64,13 +36,13 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
-        // GET: UsersLogin/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UsersLogin/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -87,7 +59,7 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
-        // GET: UsersLogin/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -102,7 +74,7 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
-        // POST: UsersLogin/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -118,7 +90,7 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
-        // GET: UsersLogin/Delete/5
+        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,7 +105,7 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
-        // POST: UsersLogin/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
