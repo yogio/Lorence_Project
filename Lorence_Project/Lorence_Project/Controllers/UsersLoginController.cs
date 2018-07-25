@@ -12,6 +12,7 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
+    [AllowAnonymous]
     public class UsersLoginController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
@@ -34,13 +35,12 @@ namespace Lorence_Project.Controllers
                 userCheck = db.Users.First(c => c.UserName == model.UserName);
             
             if (userCheck != null
-                && (userCheck.Password == model.Password)
-                 && (userCheck.userKind == UserKind.Administrator))
+                && (userCheck.Password == model.Password))
             {
                 //creating a user session
                 //Session["UserID"] = Guid.NewGuid();
-                Session["UserID"] = userCheck.UserName;
-                Session["UserKind"] = userCheck.userKind;
+                Session["UserName"] = userCheck.UserName;
+                Session["UserKind"] = userCheck.userKind.ToString();
                 Session["Password"] = userCheck.Password;
                 return RedirectToAction("Index", "Home");   
             }
@@ -49,6 +49,7 @@ namespace Lorence_Project.Controllers
             return View(model);
             
         }
+
 
         [HttpGet]
         public ActionResult Logout()
