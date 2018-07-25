@@ -20,18 +20,21 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    @if (Session.Keys.Count == 0)
+                    @if (Html.ViewContext.HttpContext.Session.Keys.Count == 0)
                     {
                         <li>@Html.ActionLink("User Login", "Login", "UsersLogin")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "UsersLogin")</li>
-
                     }
+                    @Html.Partial("_AdminListPartial")
+
+
+
+
                 </ul>
             </div>
         </div>

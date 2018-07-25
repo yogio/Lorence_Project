@@ -9,7 +9,6 @@ public enum UserKind { Administrator = 1, Employee = 2, Client = 3, Guest = 4}
 
 namespace Lorence_Project.Models
 {
-    [Table("Users")]
     public class User
     {
         //User ID for the Users Table

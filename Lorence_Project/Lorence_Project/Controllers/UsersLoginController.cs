@@ -12,44 +12,59 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
-    [AllowAnonymous]
     public class UsersLoginController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
 
-
+        //When needed, we get from the client an HttpGet request of Authentication.
+        //in this stage, we send the client a view() of the Login screen.
         [HttpGet]
         public ActionResult Login()
         {
             UserAuthentication model = new UserAuthentication();
             return View(model);
         }
-
+        //After getting the information needed for Authentication (UserName and Password)
+        //we check if it's a valid entity, if not then we send the 
         [HttpPost]
         public ActionResult Login(UserAuthentication model)
         {
             User userCheck = null;
+
             if (!ModelState.IsValid)
                 return View(model);
-            if (db.Users.Any(c => c.UserName == model.UserName))
-                userCheck = db.Users.First(c => c.UserName == model.UserName);
-            
-            if (userCheck != null
-                && (userCheck.Password == model.Password))
+
+            if (IsUserExist(model) != false && IsPasswordCorrect(model))
             {
                 //creating a user session
                 //Session["UserID"] = Guid.NewGuid();
+                userCheck = GetUser(model);
                 Session["UserName"] = userCheck.UserName;
-                Session["UserKind"] = userCheck.userKind.ToString();
+                Session["UserKind"] = userCheck.userKind;
                 Session["Password"] = userCheck.Password;
-                return RedirectToAction("Index", "Home");   
+                //HttpContext.a
+                return RedirectToAction("Index", "Home");
             }
-            
+
             ModelState.AddModelError("", "Invalid Login Attempt.");
             return View(model);
-            
+
         }
 
+        private bool IsPasswordCorrect(UserAuthentication model)
+        {
+            return GetUser(model).Password == model.Password;
+        }
+
+        private User GetUser(UserAuthentication model)
+        {
+            return db.Users.First(c => c.UserName == model.UserName);
+        }
+
+        private bool IsUserExist(UserAuthentication model)
+        {
+            return db.Users.Any(c => c.UserName == model.UserName);
+        }
 
         [HttpGet]
         public ActionResult Logout()
@@ -80,94 +95,6 @@ namespace Lorence_Project.Controllers
             }
             return View(user);
         }
-
-        // GET: UsersLogin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: UsersLogin/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,UserName,Password,userKind")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-
-        // GET: UsersLogin/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: UsersLogin/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,userKind")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
-
-        // GET: UsersLogin/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: UsersLogin/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+ 
     }
 }

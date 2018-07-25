@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace Lorence_Project.Controllers
 {
-    [AllowAnonymous]
     //[Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
