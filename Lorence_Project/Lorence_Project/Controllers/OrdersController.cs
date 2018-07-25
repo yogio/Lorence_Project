@@ -11,6 +11,7 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
+    [UserAuthorization(UserKind.Employee, UserKind.Administrator, UserKind.Client)]
     public class OrdersController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
@@ -36,7 +37,7 @@ namespace Lorence_Project.Controllers
             }
             return View(order);
         }
-
+        [UserAuthorization(UserKind.Administrator)]
         // GET: Orders/Create
         public ActionResult Create()
         {
@@ -49,6 +50,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Create([Bind(Include = "OrderID,Sit,UserID,DateCreated,Date,Time,Arrived,Approved")] Order order)
         {
             if (ModelState.IsValid)
@@ -63,6 +65,7 @@ namespace Lorence_Project.Controllers
         }
 
         // GET: Orders/Edit/5
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +86,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Edit([Bind(Include = "OrderID,Sit,UserID,DateCreated,Date,Time,Arrived,Approved")] Order order)
         {
             if (ModelState.IsValid)
@@ -96,6 +100,7 @@ namespace Lorence_Project.Controllers
         }
 
         // GET: Orders/Delete/5
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,6 +118,7 @@ namespace Lorence_Project.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);

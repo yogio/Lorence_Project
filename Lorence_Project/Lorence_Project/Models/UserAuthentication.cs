@@ -5,13 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 
+//this Class Authenticates login's attempts.
 namespace Lorence_Project.Models
 {
     public class UserAuthentication : ActionFilterAttribute, IAuthenticationFilter
     {
+        //creating local instances of the UserName and Password to check in the Users DB. 
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        //public UserKind userKind { get; set; }
+
+        //Implementing the 2 abstract methods in the derived Classes
+
+            //Checking if the Client tried to enter a null (nothing)
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            //Check Session is Empty Then set as Result is HttpUnauthorizedResult 
             if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserID"])))
             {
                 filterContext.Result = new HttpUnauthorizedResult();
@@ -28,5 +36,8 @@ namespace Lorence_Project.Models
                 };
             }
         }
+
+ 
+
     }
 }

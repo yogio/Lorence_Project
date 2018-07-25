@@ -11,10 +11,10 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
+    [UserAuthorization(UserKind.Employee,UserKind.Administrator)]
     public class UsersController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
-
         // GET: Users
         public ActionResult Index()
         {
@@ -35,7 +35,7 @@ namespace Lorence_Project.Controllers
             }
             return View(user);
         }
-
+        [UserAuthorization(UserKind.Administrator)]
         // GET: Users/Create
         public ActionResult Create()
         {
@@ -47,6 +47,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Create([Bind(Include = "UserID,UserName,Password,userKind")] User user)
         {
             if (ModelState.IsValid)
@@ -59,7 +60,9 @@ namespace Lorence_Project.Controllers
             return View(user);
         }
 
+
         // GET: Users/Edit/5
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace Lorence_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Edit([Bind(Include = "UserID,UserName,Password,userKind")] User user)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace Lorence_Project.Controllers
         }
 
         // GET: Users/Delete/5
+        [UserAuthorization(UserKind.Administrator)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace Lorence_Project.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [UserAuthorization( UserKind.Administrator)]
         public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
@@ -115,6 +121,7 @@ namespace Lorence_Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [UserAuthorization(UserKind.Administrator)]
 
         protected override void Dispose(bool disposing)
         {
