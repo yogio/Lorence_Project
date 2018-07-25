@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Lorence_Project.DAL;
 using Lorence_Project.Models;
 
@@ -26,12 +27,15 @@ namespace Lorence_Project.Controllers
         [HttpPost]
         public ActionResult Login(UserAuthentication model)
         {
+            User userCheck = null;
             if (!ModelState.IsValid)
                 return View(model);
-
-            if (db.Users.Any(c => c.UserName == model.UserName)
-                && (db.Users.Single(c => c.UserName == model.UserName).Password == model.Password)
-                 && (db.Users.Single(c=>c.UserName == model.UserName).userKind == UserKind.Administrator))
+            if (db.Users.Any(c => c.UserName == model.UserName))
+                userCheck = db.Users.First(c => c.UserName == model.UserName);
+            
+            if (userCheck != null
+                && (userCheck.Password == model.Password)
+                 && (userCheck.userKind == UserKind.Administrator))
             {
                     //creating a user session
                     Session["UserID"] = Guid.NewGuid();
@@ -41,6 +45,15 @@ namespace Lorence_Project.Controllers
             ModelState.AddModelError("", "Invalid Login Attempt.");
             return View(model);
             
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            // it will clear the session at the end of request
+            Session.Abandon(); 
+            return RedirectToAction("index", "Home");
         }
 
         // GET: UsersLogin
