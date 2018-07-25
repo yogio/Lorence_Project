@@ -9,6 +9,9 @@ namespace Lorence_Project.Models
 {
     public class UserAuthentication : ActionFilterAttribute, IAuthenticationFilter
     {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+
         public void OnAuthentication(AuthenticationContext filterContext)
         {
             //Check Session is Empty Then set as Result is HttpUnauthorizedResult 

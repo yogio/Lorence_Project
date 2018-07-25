@@ -13,9 +13,9 @@
 
     <form method="POST" action="/UsersLogin/Login">
         <label asp-for="UserName"></label>
-        <input asp-for="UserName" placeholder="UserName" />
+        <input asp-for="UserName" id="UserName" name="Username" placeholder="UserName" />
         <label asp-for="Password"></label>
-        <input asp-for="Password" placeholder="Password" />
+        <input asp-for="Password" id="Password" name="Password" placeholder="Password" />
         <input type="submit" />
     </form>
 

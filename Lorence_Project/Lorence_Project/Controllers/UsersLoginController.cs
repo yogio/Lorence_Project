@@ -19,28 +19,29 @@ namespace Lorence_Project.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            UserAuthentication model = new UserAuthentication();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Login([Bind(Include = "UserID,UserName,Password,userKind")] User model)
+        public ActionResult Login(UserAuthentication model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-            else
+            //db.Users.First(c => c.UserName == model.UserName).Password == model.Password
+            if (db.Users.Any(c => c.UserName == model.UserName)
+                && (db.Users.Single(c => c.UserName == model.UserName).Password == model.Password))
             {
-                if (db.Users.First(c => c.UserName == model.UserName).Password == model.Password)
-                {
                     //creating a user session
                     Session["UserID"] = Guid.NewGuid();
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid Login.");
-                    return View(model);
-                }
+                    return RedirectToAction("Index", "Home");   
             }
+            
+            {
+                ModelState.AddModelError("", "Invalid Login Attempt.");
+                return View(model);
+            }
+            
         }
 
         // GET: UsersLogin

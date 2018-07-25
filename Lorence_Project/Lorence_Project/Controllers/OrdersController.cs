@@ -11,6 +11,7 @@ using Lorence_Project.Models;
 
 namespace Lorence_Project.Controllers
 {
+    [UserAuthentication]
     public class OrdersController : Controller
     {
         private LorenceDbContext db = new LorenceDbContext();
