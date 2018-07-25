@@ -28,19 +28,18 @@ namespace Lorence_Project.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            //db.Users.First(c => c.UserName == model.UserName).Password == model.Password
+
             if (db.Users.Any(c => c.UserName == model.UserName)
-                && (db.Users.Single(c => c.UserName == model.UserName).Password == model.Password))
+                && (db.Users.Single(c => c.UserName == model.UserName).Password == model.Password)
+                 && (db.Users.Single(c=>c.UserName == model.UserName).userKind == UserKind.Administrator))
             {
                     //creating a user session
                     Session["UserID"] = Guid.NewGuid();
                     return RedirectToAction("Index", "Home");   
             }
             
-            {
-                ModelState.AddModelError("", "Invalid Login Attempt.");
-                return View(model);
-            }
+            ModelState.AddModelError("", "Invalid Login Attempt.");
+            return View(model);
             
         }
 
