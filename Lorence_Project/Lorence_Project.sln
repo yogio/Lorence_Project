@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lorence_Project", "Lorence_Project\Lorence_Project.csproj", "{F50DF5D7-BA4D-46FF-834A-BBD3FD438C43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lorence_Project", "Lorence_Project\Lorence_Project.csproj", "{942B6EC2-263E-4847-A383-B8C96F5E1EBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F50DF5D7-BA4D-46FF-834A-BBD3FD438C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F50DF5D7-BA4D-46FF-834A-BBD3FD438C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F50DF5D7-BA4D-46FF-834A-BBD3FD438C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F50DF5D7-BA4D-46FF-834A-BBD3FD438C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942B6EC2-263E-4847-A383-B8C96F5E1EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942B6EC2-263E-4847-A383-B8C96F5E1EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942B6EC2-263E-4847-A383-B8C96F5E1EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942B6EC2-263E-4847-A383-B8C96F5E1EBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2A496766-3C50-4E8C-BE08-17EACAB3D323}
+		SolutionGuid = {EE95F391-127C-4981-8653-DF700F2ECAB7}
 	EndGlobalSection
 EndGlobal
