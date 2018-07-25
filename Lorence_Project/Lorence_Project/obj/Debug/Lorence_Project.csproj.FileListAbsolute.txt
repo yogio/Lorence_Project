@@ -386,3 +386,5 @@ C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\obj\De
 C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\obj\Debug\Lorence_Project.csproj.CopyComplete
 C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\obj\Debug\Lorence_Project.dll
 C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\obj\Debug\Lorence_Project.pdb
+C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Gi\Source\Repos\Lorence_Project3\Lorence_Project\Lorence_Project\bin\roslyn\System.IO.Pipes.AccessControl.dll
