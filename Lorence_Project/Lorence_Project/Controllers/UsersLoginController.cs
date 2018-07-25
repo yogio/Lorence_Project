@@ -37,9 +37,12 @@ namespace Lorence_Project.Controllers
                 && (userCheck.Password == model.Password)
                  && (userCheck.userKind == UserKind.Administrator))
             {
-                    //creating a user session
-                    Session["UserID"] = Guid.NewGuid();
-                    return RedirectToAction("Index", "Home");   
+                //creating a user session
+                //Session["UserID"] = Guid.NewGuid();
+                Session["UserID"] = userCheck.UserName;
+                Session["UserKind"] = userCheck.userKind;
+                Session["Password"] = userCheck.Password;
+                return RedirectToAction("Index", "Home");   
             }
             
             ModelState.AddModelError("", "Invalid Login Attempt.");
@@ -52,7 +55,7 @@ namespace Lorence_Project.Controllers
         {
             FormsAuthentication.SignOut();
             // it will clear the session at the end of request
-            Session.Abandon(); 
+            Session.Abandon();
             return RedirectToAction("index", "Home");
         }
 

@@ -23,7 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                     <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    @if (Session.IsNewSession)
+                    @if (Session.Keys.Count == 0)
                     {
                         <li>@Html.ActionLink("User Login", "Login", "UsersLogin")</li>
                     }
