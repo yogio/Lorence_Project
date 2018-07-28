@@ -24,11 +24,11 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderProduct" EntitySet="OrderProducts" />
           </AssociationSet>
-          <EntitySet Name="Products" EntityType="Model1.Product" />
           <AssociationSet Name="OrderProductProduct" Association="Model1.OrderProductProduct">
             <End Role="OrderProduct" EntitySet="OrderProducts" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="Products" EntityType="Model1.Product" />
           </EntityContainer>
         <EntityType Name="AspNetUsers" >
           <Key>
@@ -54,6 +54,7 @@
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sit" Type="String" Nullable="false" />
+          <Property Name="SitKind" Type="Model1.SitKind" Nullable="false" />
           <Property Name="Arrived" Type="String" Nullable="false" />
           <Property Name="Approved" Type="String" Nullable="false" />
           <Property Name="UserID" Type="String" Nullable="false" />
@@ -61,11 +62,10 @@
           <Property Name="Date" Type="String" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Model1.AspNetUsersOrder" FromRole="Order" ToRole="AspNetUsers" />
           <NavigationProperty Name="OrderProducts" Relationship="Model1.OrderOrderProduct" FromRole="Order" ToRole="OrderProduct" />
-          <Property Name="SitKind" Type="Model1.SitKind" Nullable="false" />
         </EntityType>
         <Association Name="AspNetUsersOrder">
-          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
-          <End Type="Model1.Order" Role="Order" Multiplicity="1" />
+          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
         </Association>
         <EntityType Name="OrderProduct">
           <Key>
@@ -82,9 +82,6 @@
           <End Type="Model1.OrderProduct" Role="OrderProduct" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="OrderID" />
-          </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" Nullable="false" />
           <Property Name="ProductKind" Type="Model1.ProductKind" Nullable="false" />
@@ -103,6 +100,14 @@
           <Member Name="Table" Value="1" />
           <Member Name="Bar" Value="2" />
         </EnumType>
+        <EntityType Name="Food" BaseType="Model1.Product">
+          </EntityType>
+        <EntityType Name="Drink" BaseType="Model1.Product">
+          </EntityType>
+        <EntityType Name="Table" BaseType="Model1.Order">
+          </EntityType>
+        <EntityType Name="Bar" BaseType="Model1.Order">
+          </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

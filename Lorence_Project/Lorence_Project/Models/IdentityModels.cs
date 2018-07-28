@@ -21,7 +21,7 @@ namespace Lorence_Project.Models
     public class LorenceDbContext : IdentityDbContext<ApplicationUser>
     {
         public LorenceDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LorenceConnection", throwIfV1Schema: false)
         {
         }
 
@@ -29,7 +29,10 @@ namespace Lorence_Project.Models
         {
             return new LorenceDbContext();
         }
-
-        public System.Data.Entity.DbSet<Lorence_Project.Models.LorenceUser> LorenceUsers { get; set; }
+        
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        //public System.Data.Entity.DbSet<Lorence_Project.Models.ApplicationUser> LorenceUsers { get; set; }
     }
 }

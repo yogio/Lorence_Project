@@ -6,12 +6,20 @@
     <edmx:Diagrams>
       <Diagram DiagramId="186ae3cae8694ff495108e4678af8d39" Name="Diagram1" >
         <EntityTypeShape EntityType="Model1.AspNetUsers" Width="2" PointX="0.5" PointY="0.75" />
-        <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="3.25" PointY="1.125" />
+        <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="3.125" PointY="0.75" />
         <AssociationConnector Association="Model1.AspNetUsersOrder" />
-        <EntityTypeShape EntityType="Model1.OrderProduct" Width="1.5" PointX="5.375" PointY="1.625" />
+        <EntityTypeShape EntityType="Model1.OrderProduct" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="Model1.OrderOrderProduct" />
-        <EntityTypeShape EntityType="Model1.Product" Width="1.5" PointX="7.5" PointY="1.625" />
+        <EntityTypeShape EntityType="Model1.Product" Width="1.5" PointX="7.5" PointY="0.75" />
         <AssociationConnector Association="Model1.OrderProductProduct" />
+        <EntityTypeShape EntityType="Model1.Food" Width="1.5" PointX="9.75" PointY="0.75" FillColor="255, 255, 128" />
+        <EntityTypeShape EntityType="Model1.Drink" Width="1.5" PointX="9.75" PointY="2" FillColor="Yellow" />
+        <InheritanceConnector EntityType="Model1.Food" />
+        <InheritanceConnector EntityType="Model1.Drink" />
+        <EntityTypeShape EntityType="Model1.Table" Width="1.5" PointX="4.625" PointY="4" FillColor="Yellow" />
+        <EntityTypeShape EntityType="Model1.Bar" Width="1.5" PointX="2.75" PointY="4" FillColor="Yellow" />
+        <InheritanceConnector EntityType="Model1.Table" />
+        <InheritanceConnector EntityType="Model1.Bar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
