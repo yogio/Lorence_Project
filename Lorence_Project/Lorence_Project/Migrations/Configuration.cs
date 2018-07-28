@@ -1,6 +1,7 @@
 namespace Lorence_Project.Migrations
 {
     using Lorence_Project.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -24,7 +25,7 @@ namespace Lorence_Project.Migrations
                 new SitOrder{sitKind = SitKind.Bar, SitLocation = "2"},
                 new SitOrder{sitKind = SitKind.Table, SitLocation = "Out Side 1"}
             };
-            foreach(var s in SitOrder)
+            foreach (var s in SitOrder)
             {
                 context.SitOrders.Add(s);
             }
@@ -59,6 +60,7 @@ namespace Lorence_Project.Migrations
                 OrderID = context.Orders.First(c=>c.UserID == context.Users.First(f=>f.UserName == "Admin").Id).OrderID}
             };
 
+            var role = new RoleStore<IdentityRole> { }
         }
     }
 }
