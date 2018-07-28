@@ -18,16 +18,18 @@ namespace Lorence_Project.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class LorenceDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public LorenceDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static LorenceDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new LorenceDbContext();
         }
+
+        public System.Data.Entity.DbSet<Lorence_Project.Models.LorenceUser> LorenceUsers { get; set; }
     }
 }
