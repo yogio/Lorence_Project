@@ -18,6 +18,7 @@ namespace Lorence_Project.Models
             return userIdentity;
         }
 
+        //Added to maintain the Many orders to One User
         public virtual ICollection<Order> Orders { get; set; }
     }
 
