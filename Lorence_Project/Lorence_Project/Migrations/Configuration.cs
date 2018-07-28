@@ -1,6 +1,8 @@
 namespace Lorence_Project.Migrations
 {
+    using Lorence_Project.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,10 +16,10 @@ namespace Lorence_Project.Migrations
 
         protected override void Seed(Lorence_Project.Models.LorenceDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            var users = new List<AspNetUsers>
+            {
+                
+            };
         }
     }
 }

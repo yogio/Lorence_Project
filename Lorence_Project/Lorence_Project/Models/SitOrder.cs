@@ -7,17 +7,18 @@ using System.Web;
 
 namespace Lorence_Project.Models
 {
-    public class OrderProduct
+    public enum SitKind { Table = 1, Bar = 2 }
+
+    public class SitOrder
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderProductID { get; set; }
+        public int SitOrderID { get; set;}
 
-        [Required, ForeignKey("Order")]
+        public SitKind sitKind { get; set; }
         public int OrderID { get; set; }
 
-        //Navigation Properties
-        public virtual Order Order { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        //Navegation Properties
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

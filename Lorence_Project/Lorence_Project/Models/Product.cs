@@ -12,9 +12,13 @@ namespace Lorence_Project.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID")]
         public int ProductID { get; set; }
+        [Display(Name = "Product Name")]
         public string ProductName { get; set; }
+        [Display(Name = "Product Kind")]
         public ProductKind productKind { get; set; }
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         //Navigation Properties

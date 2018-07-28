@@ -12,14 +12,8 @@
         <AssociationConnector Association="Model1.OrderOrderProduct" />
         <EntityTypeShape EntityType="Model1.Product" Width="1.5" PointX="7.5" PointY="0.75" />
         <AssociationConnector Association="Model1.OrderProductProduct" />
-        <EntityTypeShape EntityType="Model1.Food" Width="1.5" PointX="9.75" PointY="0.75" FillColor="255, 255, 128" />
-        <EntityTypeShape EntityType="Model1.Drink" Width="1.5" PointX="9.75" PointY="2" FillColor="Yellow" />
-        <InheritanceConnector EntityType="Model1.Food" />
-        <InheritanceConnector EntityType="Model1.Drink" />
-        <EntityTypeShape EntityType="Model1.Table" Width="1.5" PointX="4.625" PointY="4" FillColor="Yellow" />
-        <EntityTypeShape EntityType="Model1.Bar" Width="1.5" PointX="2.75" PointY="4" FillColor="Yellow" />
-        <InheritanceConnector EntityType="Model1.Table" />
-        <InheritanceConnector EntityType="Model1.Bar" />
+        <EntityTypeShape EntityType="Model1.SitOrder" Width="1.5" PointX="5.375" PointY="3.125" />
+        <AssociationConnector Association="Model1.OrderSitOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
