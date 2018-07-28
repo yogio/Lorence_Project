@@ -25,6 +25,11 @@ namespace IAC.Models
         {
         }
 
+        public DbSet<Participant> Students { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

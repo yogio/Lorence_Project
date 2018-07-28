@@ -9,7 +9,7 @@ namespace IAC.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(IAC.Models.ApplicationDbContext context)
