@@ -13,11 +13,13 @@ namespace Lorence_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderProductID { get; set; }
 
-        [Required, ForeignKey("Order")]
+        [Required, ForeignKey("Orders")]
         public int OrderID { get; set; }
+        [Required, ForeignKey("Products")]
+        public int ProductID { get; set; }
 
         //Navigation Properties
-        public virtual Order Order { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Order Orders { get; set; }
+        public virtual Product Products { get; set; }
     }
 }

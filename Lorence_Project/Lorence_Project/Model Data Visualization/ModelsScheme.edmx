@@ -85,7 +85,7 @@
         </EntityType>
         <Association Name="OrderOrderProduct">
           <End Type="Model1.Order" Role="Order" Multiplicity="1" />
-          <End Type="Model1.OrderProduct" Role="OrderProduct" Multiplicity="0..1" />
+          <End Type="Model1.OrderProduct" Role="OrderProduct" Multiplicity="1" />
         </Association>
         <EntityType Name="Product">
           <Key>
@@ -98,8 +98,8 @@
           <NavigationProperty Name="OrderProduct" Relationship="Model1.OrderProductProduct" FromRole="Product" ToRole="OrderProduct" />
         </EntityType>
         <Association Name="OrderProductProduct">
-          <End Type="Model1.OrderProduct" Role="OrderProduct" Multiplicity="*" />
-          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+          <End Type="Model1.OrderProduct" Role="OrderProduct" Multiplicity="1" />
+          <End Type="Model1.Product" Role="Product" Multiplicity="1" />
         </Association>
         <EnumType Name="ProductKind">
           <Member Name="Drink" Value="1" />

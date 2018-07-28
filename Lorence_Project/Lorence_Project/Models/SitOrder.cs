@@ -14,9 +14,9 @@ namespace Lorence_Project.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SitOrderID { get; set;}
+        public string SitLocation { get; set; }
 
         public SitKind sitKind { get; set; }
-        public int OrderID { get; set; }
 
         //Navegation Properties
         public virtual ICollection<Order> Orders { get; set; }

@@ -36,6 +36,7 @@ namespace Lorence_Project.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<SitOrder> SitOrders { get; set; }
         //public System.Data.Entity.DbSet<Lorence_Project.Models.AspNetUsers> LorenceUsers { get; set; }
     }
 }
