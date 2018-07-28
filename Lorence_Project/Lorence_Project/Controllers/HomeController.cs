@@ -15,7 +15,7 @@ namespace Lorence_Project.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Lorence isn't for chumps.";
 
             return View();
         }
