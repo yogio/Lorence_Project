@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LORENCE N.3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+</head>
+
+<body style="background-color:rgb(0,0,0);color:rgb(255,255,255);font-size:30px;">
+    <nav class="navbar navbar-light navbar-expand-md" style="width:987px;">
+        <div class="container-fluid"><a class="navbar-brand" href="#" style="width:390px;height:111px;background-color:#000000;color:rgba(255,255,255,0.93);font-size:46px;font-family:'Alfa Slab One', cursive;">LORENCE BAR</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1" style="width:100%;height:94px;margin:0px;padding:0px;font-family:'Alfa Slab One', cursive;">
+                <ul class="nav navbar-nav ml-auto" style="padding:0px;margin:0px;height:81px;font-size:29px;">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="width:133px;height:60px;color:#ffffff;font-family:'Alfa Slab One', cursive;">קצת עלינו</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:#ffffff;">שמירת מקומות&nbsp;</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;height:60px;width:96px;">&nbsp;גלריות</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;width:105px;height:60px;margin:0px;padding:8px;">התחברות</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div>
+        <div class="jumbotron" style="width:100%;height:100%;margin:0;padding:120px;background-color:rgb(0,0,0);background-image:url(&quot;assets/img/background_edited.jpg&quot;);background-position:center;text-align:center;font-size:38px;color:rgb(242,12,12);margin:auto;">
+            <h1 style="width:806px;height:70px;margin:10px;padding:-16px;font-size:55px;font-family:Lobster, cursive;">Welcome To lorence Bar</h1>
+            <p style="font-size:45px;font-family:'Alfa Slab One', cursive;width:1000px;height:213px;"><strong><em>בשנת 2008 נפתח הלורנס- בר חברי עם קריצה לדאנס אווירתי. תוכלו להגיע עם החבר'ה, עם הדייט שלכם, או אפילו לבד. מה שלא יהיה, תמיד תוכלו להרגיש בבית</em></strong></p>
+            <p style="font-size:33px;height:223px;"><a class="btn btn-primary" role="button" href="#">שמירת מקומות</a></p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
