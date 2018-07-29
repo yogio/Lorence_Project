@@ -10,7 +10,6 @@ using Lorence.Models;
 
 namespace Lorence.Controllers
 {
-    [Authorize(Roles = "Administrator, Employee")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -35,7 +34,7 @@ namespace Lorence.Controllers
             }
             return View(product);
         }
-        [Authorize(Roles = "Administrator")]
+
         // GET: Products/Create
         public ActionResult Create()
         {
@@ -47,7 +46,6 @@ namespace Lorence.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductKind,Description")] Product product)
         {
             if (ModelState.IsValid)
@@ -59,7 +57,7 @@ namespace Lorence.Controllers
 
             return View(product);
         }
-        [Authorize(Roles = "Administrator")]
+
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,7 +78,6 @@ namespace Lorence.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "ProductID,ProductName,ProductKind,Description")] Product product)
         {
             if (ModelState.IsValid)
@@ -93,7 +90,6 @@ namespace Lorence.Controllers
         }
 
         // GET: Products/Delete/5
-        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
