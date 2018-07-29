@@ -50,9 +50,12 @@ namespace Lorence.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "Admin@lorence.com",
+                var user = new ApplicationUser
+                {
+                    UserName = "Admin@lorence.com",
                     Email = "Admin@lorence.com",
-                    EmailConfirmed = true };
+                    EmailConfirmed = true
+                };
 
                 manager.Create(user, "Aa12346!");
                 manager.AddToRole(user.Id, "Administrator");
@@ -62,9 +65,12 @@ namespace Lorence.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "Employee1@lorence.com",
+                var user = new ApplicationUser
+                {
+                    UserName = "Employee1@lorence.com",
                     Email = "Employee1@lorence.com",
-                    EmailConfirmed = true };
+                    EmailConfirmed = true
+                };
 
                 manager.Create(user, "Aa12346!");
                 manager.AddToRole(user.Id, "Employee");
@@ -74,9 +80,12 @@ namespace Lorence.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "Client1@lorence.com",
+                var user = new ApplicationUser
+                {
+                    UserName = "Client1@lorence.com",
                     Email = "Client1@lorence.com",
-                    EmailConfirmed = true };
+                    EmailConfirmed = true
+                };
 
                 manager.Create(user, "Aa12346!");
                 manager.AddToRole(user.Id, "Client");
@@ -131,9 +140,38 @@ namespace Lorence.Migrations
             orders.ForEach(c => context.Orders.Add(c));
             context.SaveChanges();
 
+            //Adding Products that the Orders made.
+            //Order #1 - ordered a burger and Beer.
+            //Order #2 - nothing.
+            //Order #3 - ordered Wine
+            //Order #4 - Ordered 2 Burgers, 2 Beers and 3 Wines
+            var orderproducts = new List<OrderProduct>
+            {
+                //Order #1
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Beer").ProductID,
+                OrderID = 1 },
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Burger").ProductID,
+                OrderID = 1 },
+                //Order #3
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Wine").ProductID,
+                OrderID = 3 },
+                //Order #4
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Burger").ProductID,
+                OrderID = 4 },
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Burger").ProductID,
+                OrderID = 4 },
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Beer").ProductID,
+                OrderID = 4 },
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Beer").ProductID,
+                OrderID = 4 },
+                new OrderProduct{ProductID = context.Products.First(c => c.ProductName == "Wine").ProductID,
+                OrderID = 4 }
+
+            };
+            orderproducts.ForEach(c => context.OrderProducts.Add(c));
+            context.SaveChanges();
+
 
         }
-
-
     }
 }

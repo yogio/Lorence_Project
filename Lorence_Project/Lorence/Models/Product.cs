@@ -21,6 +21,6 @@ namespace Lorence.Models
         public string Description { get; set; }
 
         //Navigation Properties
-        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
