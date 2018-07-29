@@ -10,6 +10,7 @@ using Lorence.Models;
 
 namespace Lorence.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -21,6 +22,7 @@ namespace Lorence.Controllers
         }
 
         // GET: Products/Details/5
+        [Authorize(Roles = "Administrator, Employee")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Lorence.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace Lorence.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductKind,Description")] Product product)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace Lorence.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Administrator, Employee")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace Lorence.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Employee")]
         public ActionResult Edit([Bind(Include = "ProductID,ProductName,ProductKind,Description")] Product product)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace Lorence.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

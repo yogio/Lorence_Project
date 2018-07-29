@@ -10,6 +10,7 @@ using Lorence.Models;
 
 namespace Lorence.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -39,7 +40,7 @@ namespace Lorence.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email");
+            ViewBag.UserID = new SelectList(db.Users, "Id", "Email");
             ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName");
             return View();
         }
@@ -58,7 +59,7 @@ namespace Lorence.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email", order.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
             ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
             return View(order);
         }
@@ -75,7 +76,7 @@ namespace Lorence.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email", order.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
             ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
             return View(order);
         }
@@ -93,7 +94,7 @@ namespace Lorence.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email", order.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
             ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
             return View(order);
         }
