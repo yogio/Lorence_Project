@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +17,10 @@ namespace Lorence.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        //Adding a connection from the basic ApplicationUser to the Orders
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -35,6 +40,5 @@ namespace Lorence.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Lorence.Models.ApplicationUser> Users { get; set; }
     }
 }

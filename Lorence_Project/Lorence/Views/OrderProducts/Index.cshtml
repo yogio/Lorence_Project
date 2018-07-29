@@ -28,12 +28,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.Product.ProductName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderProductID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderProductID })
-        </td>
-    </tr>
+        @if (User.IsInRole("Administrator"))
+        {
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderProductID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderProductID })
+            </td>
+        }
+        else
+        {<td> @Html.ActionLink("Details", "Details", new { id = item.OrderProductID }) </td>}
+</tr>
 }
 
 </table>
