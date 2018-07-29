@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="Model1.AspNetUsers" />
+    <EntitySet Name="Orders" EntityType="Model1.Orders" />
+    <EntitySet Name="OrderProducts" EntityType="Model1.OrderProducts" />
+    <EntitySet Name="Products" EntityType="Model1.Products" />
+    <AssociationSet Name="OrderProductsProducts" Association="Model1.OrderProductsProducts">
+      <End Role="OrderProducts" EntitySet="OrderProducts" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="OrderProductsOrders" Association="Model1.OrderProductsOrders">
+      <End Role="OrderProducts" EntitySet="OrderProducts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="OrdersAspNetUsers" Association="Model1.OrdersAspNetUsers">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="SitOrders" EntityType="Model1.SitOrders" />
+    <AssociationSet Name="SitOrdersOrders" Association="Model1.SitOrdersOrders">
+      <End Role="SitOrders" EntitySet="SitOrders" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="String" Nullable="false" />
+    <Property Name="SecurityStamp" Type="String" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" />
+    <Property Name="PhoneNumberConfirmed" Type="String" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="String" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="String" Nullable="false" />
+    <Property Name="LockoutEnabled" Type="String" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="String" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Model1.OrdersAspNetUsers" FromRole="AspNetUsers" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SitID" Type="String" Nullable="false" />
+    <Property Name="Arrived" Type="String" Nullable="false" />
+    <Property Name="Approved" Type="String" Nullable="false" />
+    <Property Name="UserID" Type="String" Nullable="false" />
+    <Property Name="DateCreated" Type="String" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" />
+    <NavigationProperty Name="OrderProduct" Relationship="Model1.OrderProductsOrders" FromRole="Orders" ToRole="OrderProducts" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Model1.OrdersAspNetUsers" FromRole="Orders" ToRole="AspNetUsers" />
+    <NavigationProperty Name="SitOrder" Relationship="Model1.SitOrdersOrders" FromRole="Orders" ToRole="SitOrders" />
+  </EntityType>
+  <EntityType Name="OrderProducts">
+    <Key>
+      <PropertyRef Name="OrderProductID" />
+    </Key>
+    <Property Name="OrderProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="String" Nullable="false" />
+    <Property Name="ProductID" Type="String" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Model1.OrderProductsProducts" FromRole="OrderProducts" ToRole="Products" />
+    <NavigationProperty Name="Orders" Relationship="Model1.OrderProductsOrders" FromRole="OrderProducts" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" />
+    <Property Name="productKind" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <NavigationProperty Name="OrderProduct" Relationship="Model1.OrderProductsProducts" FromRole="Products" ToRole="OrderProducts" />
+  </EntityType>
+  <Association Name="OrderProductsProducts">
+    <End Type="Model1.OrderProducts" Role="OrderProducts" Multiplicity="*" />
+    <End Type="Model1.Products" Role="Products" Multiplicity="1" />
+  </Association>
+  <Association Name="OrderProductsOrders">
+    <End Type="Model1.OrderProducts" Role="OrderProducts" Multiplicity="1" />
+    <End Type="Model1.Orders" Role="Orders" Multiplicity="1" />
+  </Association>
+  <Association Name="OrdersAspNetUsers">
+    <End Type="Model1.Orders" Role="Orders" Multiplicity="*" />
+    <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+  </Association>
+  <EntityType Name="SitOrders">
+    <Key>
+      <PropertyRef Name="SitOrderID" />
+    </Key>
+    <Property Name="SitOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SitLocation" Type="String" Nullable="false" />
+    <Property Name="sitKind" Type="String" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Model1.SitOrdersOrders" FromRole="SitOrders" ToRole="Orders" />
+  </EntityType>
+  <Association Name="SitOrdersOrders">
+    <End Type="Model1.SitOrders" Role="SitOrders" Multiplicity="1" />
+    <End Type="Model1.Orders" Role="Orders" Multiplicity="*" />
+  </Association>
+</Schema>
