@@ -11,64 +11,57 @@ using Lorence.Models;
 namespace Lorence.Controllers
 {
     [Authorize]
-    public class OrdersController : Controller
+    public class SitsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders
-        [Authorize(Roles = "Administrator, Employee")]
+        // GET: Sits
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.ApplicationUser).Include(o => o.Sit);
-            return View(orders.ToList());
+            return View(db.Sits.ToList());
         }
 
-        // GET: Orders/Details/5
-        [Authorize(Roles = "Administrator, Employee")]
+        // GET: Sits/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Sit sit = db.Sits.Find(id);
+            if (sit == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(sit);
         }
 
-        // GET: Orders/Create
-        [Authorize]
+        // GET: Sits/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "Id", "Email");
-            ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName");
             return View();
         }
 
-        // POST: Orders/Create
+        // POST: Sits/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Create([Bind(Include = "OrderID,SitID,Arrive,Approved,UserID,DateCreated,TimeOrdered")] Order order)
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Create([Bind(Include = "SitID,SitKind,SitName")] Sit sit)
         {
             if (ModelState.IsValid)
             {
-                db.Orders.Add(order);
+                db.Sits.Add(sit);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
-            ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
-            return View(order);
+            return View(sit);
         }
 
-        // GET: Orders/Edit/5
+        // GET: Sits/Edit/5
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
@@ -76,36 +69,32 @@ namespace Lorence.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Sit sit = db.Sits.Find(id);
+            if (sit == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
-            ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
-            return View(order);
+            return View(sit);
         }
 
-        // POST: Orders/Edit/5
+        // POST: Sits/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public ActionResult Edit([Bind(Include = "OrderID,SitID,Arrive,Approved,UserID,DateCreated,TimeOrdered")] Order order)
+        public ActionResult Edit([Bind(Include = "SitID,SitKind,SitName")] Sit sit)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
+                db.Entry(sit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "Id", "Email", order.UserID);
-            ViewBag.SitID = new SelectList(db.Sits, "SitID", "SitName", order.SitID);
-            return View(order);
+            return View(sit);
         }
 
-        // GET: Orders/Delete/5
+        // GET: Sits/Delete/5
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
@@ -113,21 +102,21 @@ namespace Lorence.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Sit sit = db.Sits.Find(id);
+            if (sit == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(sit);
         }
 
-        // POST: Orders/Delete/5
+        // POST: Sits/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
+            Sit sit = db.Sits.Find(id);
+            db.Sits.Remove(sit);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

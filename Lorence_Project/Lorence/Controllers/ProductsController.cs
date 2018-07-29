@@ -16,6 +16,7 @@ namespace Lorence.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Products.ToList());
