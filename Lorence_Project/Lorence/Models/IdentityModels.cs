@@ -39,6 +39,5 @@ namespace Lorence.Models
         {
             return new ApplicationDbContext();
         }
-
     }
 }
