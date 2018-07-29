@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationUsersSet" EntityType="Model1.ApplicationUsers" />
+          <EntitySet Name="OrdersSet" EntityType="Model1.Orders" />
+          <EntitySet Name="OrderProductsSet" EntityType="Model1.OrderProducts" />
+          <EntitySet Name="ProductsSet" EntityType="Model1.Products" />
+          <EntitySet Name="SitsSet" EntityType="Model1.Sits" />
+          <AssociationSet Name="ApplicationUsersOrders" Association="Model1.ApplicationUsersOrders">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsersSet" />
+            <End Role="Orders" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrdersOrderProducts" Association="Model1.OrdersOrderProducts">
+            <End Role="Orders" EntitySet="OrdersSet" />
+            <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderProductsProducts" Association="Model1.OrderProductsProducts">
+            <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+            <End Role="Products" EntitySet="ProductsSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderProductsSits" Association="Model1.OrderProductsSits">
+            <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+            <End Role="Sits" EntitySet="SitsSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ApplicationUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="String" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" />
+          <Property Name="SecurityStamp" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <Property Name="PhoneNumberConfirmed" Type="String" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="String" Nullable="false" />
+          <Property Name="LockoutEndDate" Type="String" Nullable="false" />
+          <Property Name="LockoutEnabled" Type="String" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Model1.ApplicationUsersOrders" FromRole="ApplicationUsers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SitID" Type="String" Nullable="false" />
+          <Property Name="Arrived" Type="String" Nullable="false" />
+          <Property Name="Approved" Type="String" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" />
+          <Property Name="DateCreated" Type="String" Nullable="false" />
+          <Property Name="TimeOrdered" Type="String" Nullable="false" />
+          <NavigationProperty Name="ApplicationUsers" Relationship="Model1.ApplicationUsersOrders" FromRole="Orders" ToRole="ApplicationUsers" />
+          <NavigationProperty Name="OrderProducts" Relationship="Model1.OrdersOrderProducts" FromRole="Orders" ToRole="OrderProducts" />
+        </EntityType>
+        <EntityType Name="OrderProducts">
+          <Key>
+            <PropertyRef Name="OrderProductID" />
+          </Key>
+          <Property Name="OrderProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="String" Nullable="false" />
+          <Property Name="OrderID" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Model1.OrdersOrderProducts" FromRole="OrderProducts" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="Model1.OrderProductsProducts" FromRole="OrderProducts" ToRole="Products" />
+          <NavigationProperty Name="Sits" Relationship="Model1.OrderProductsSits" FromRole="OrderProducts" ToRole="Sits" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" Nullable="false" />
+          <Property Name="ProductKind" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderProducts" Relationship="Model1.OrderProductsProducts" FromRole="Products" ToRole="OrderProducts" />
+        </EntityType>
+        <EntityType Name="Sits">
+          <Key>
+            <PropertyRef Name="SitID" />
+          </Key>
+          <Property Name="SitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SitKind" Type="String" Nullable="false" />
+          <Property Name="SitName" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderProducts" Relationship="Model1.OrderProductsSits" FromRole="Sits" ToRole="OrderProducts" />
+        </EntityType>
+        <Association Name="ApplicationUsersOrders">
+          <End Type="Model1.ApplicationUsers" Role="ApplicationUsers" Multiplicity="1" />
+          <End Type="Model1.Orders" Role="Orders" Multiplicity="*" />
+        </Association>
+        <Association Name="OrdersOrderProducts">
+          <End Type="Model1.Orders" Role="Orders" Multiplicity="1" />
+          <End Type="Model1.OrderProducts" Role="OrderProducts" Multiplicity="0..1" />
+        </Association>
+        <Association Name="OrderProductsProducts">
+          <End Type="Model1.OrderProducts" Role="OrderProducts" Multiplicity="*" />
+          <End Type="Model1.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="OrderProductsSits">
+          <End Type="Model1.OrderProducts" Role="OrderProducts" Multiplicity="1" />
+          <End Type="Model1.Sits" Role="Sits" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
