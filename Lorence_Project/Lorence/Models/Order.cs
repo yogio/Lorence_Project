@@ -16,17 +16,17 @@ namespace Lorence.Models
         [ForeignKey("Sit")]
         [Display(Name = "Sit ID")]
         public int SitID { get; set; }
-        public bool? Arrive { get; set; }
+        public bool? Arrived { get; set; }
         public bool? Approved { get; set; }
         [ForeignKey("ApplicationUser")]
         [Display(Name = "Users ID")]
         public string UserID { get; set; }
         [DataType(DataType.Date)]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Date Order Created")]
-        public DateTime DateCreated { get; set; } = DateTime.Now.Date;
+        public DateTime DateCreated { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         [Required]
         [DataType(DataType.DateTime)]

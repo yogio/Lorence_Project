@@ -103,8 +103,33 @@ namespace Lorence.Migrations
             sits.ForEach(c => context.Sits.Add(c));
             context.SaveChanges();
 
-            //Creating the Orders: The admin orders the Table - 1 for the date of two days after today.
-            
+            //Creating the Orders: 
+            //The admin orders the Table - 1 for the date of two days after today.
+            //The Employee order the Bar - 2 for the date of three days after today.
+            //The Client orders the Table - 2 for the date of the next day after today.
+            //The Client orders the Bar - 1 for the date of five days after today.
+
+            var orders = new List<Order>
+            {
+                new Order{UserID = context.Users.First(c => c.Email == "Admin@lorence.com").Id,
+                    DateCreated = DateTime.Now.Date,
+                    SitID = context.Sits.First(s => (s.SitName == "1" && s.SitKind.ToString() == SitKind.Table.ToString())).SitID,
+                    TimeOrdered = DateTime.Now.AddDays(2.0)},
+
+                new Order{UserID = context.Users.First(c => c.Email == "Employee1@lorence.com").Id,
+                    DateCreated = DateTime.Now.Date,
+                    SitID = context.Sits.First(s => (s.SitName == "2" && s.SitKind.ToString() == SitKind.Bar.ToString())).SitID,
+                    TimeOrdered = DateTime.Now.AddDays(3.0) },
+
+                new Order{UserID = context.Users.First(c => c.Email == "Client1@lorence.com").Id, DateCreated = DateTime.Now.Date,
+                    SitID = context.Sits.First(s => (s.SitName == "2" && s.SitKind.ToString() == SitKind.Table.ToString())).SitID,
+                    TimeOrdered = DateTime.Now.AddDays(1.0) },
+                new Order{UserID = context.Users.First(c => c.Email == "Client1@lorence.com").Id, DateCreated = DateTime.Now.Date,
+                    SitID = context.Sits.First(s => (s.SitName == "1" && s.SitKind.ToString() == SitKind.Bar.ToString())).SitID,
+                    TimeOrdered = DateTime.Now.AddDays(5.0) }
+            };
+            orders.ForEach(c => context.Orders.Add(c));
+            context.SaveChanges();
 
 
         }
