@@ -34,5 +34,7 @@ namespace Lorence.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Lorence.Models.ApplicationUser> Users { get; set; }
     }
 }
